@@ -135,15 +135,11 @@
 
         $scope.editPermissions = function(item){
           item.editPermissions(item);
-        }
+        };
 
         // Populate systems in copy mod
-        $scope.getCopySystems = function(){
-          SystemsController.searchSystems('limit=9999&filter=id,type,name,storage').then(
-            function (response) {
-              $scope.copySystems = response.result;
-            }
-          );
+        $scope.initCopySystem = function(system){
+          $scope.selectedSystem = '';
         };
 
         $scope.copy = function(item) {
