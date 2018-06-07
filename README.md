@@ -1,38 +1,22 @@
-## angular-filemanager
+## Agave AngularJS Filemanager
 
-A very smart filemanager to manage your files in the browser developed in AngularJS with Material-Design styles by [Jonas Sciangula Street](https://github.com/joni2back)
+A filemanager dirctive for AngularJS to manage your files in the browser using the Agave Platform. 
 
-#### [Try the DEMO](http://angular-filemanager.zendelsolutions.com/)
+#### [Try the DEMO](https://agaveplatform.github.io/angualar-filemanager)
 ---------
-
-***Important:*** We need a collaborator to improve the [docs](API.md) !
-
----------
-![alt tag](https://raw.githubusercontent.com/joni2back/angular-filemanager/master/screenshot1.png)
-![alt tag](https://raw.githubusercontent.com/joni2back/angular-filemanager/master/screenshot2.png)
-![alt tag](https://raw.githubusercontent.com/joni2back/angular-filemanager/master/screenshot3.png)
 
 ### Features
   - Multilanguage (English / Spanish / Portuguese / French)
   - Multiple templates (List / Icons)
-  - Multiple file upload
-  - Search files
+  - Multiple file and directory upload
   - Directory tree navigation
   - Copy, Move, Rename (Interactive UX)
+  - Managed file transfers
   - Delete, Edit, Preview, Download
-  - File permissions (Unix chmod style)
+  - Generate disposable public URLs to share data
+  - Agave file permissions
   - Mobile support
-
-### TODO
-  - Improve the docs
-  - Multiple file selector
-  - Drag and drop
-  - Dropbox and Google Drive compatibility
-  - Extend backend bridges (PHP, Java, Python, Node, .Net)
-
-### Backend API
-[Read the docs](API.md)
-
+  - Leverages the Agave AngularJS SDK
 ---------
 
 ### Use in your existing project
@@ -64,18 +48,20 @@ A very smart filemanager to manage your files in the browser developed in Angula
 ### Using source files instead of minified js
 ```html
 <!-- Uncomment if you need to use raw source code
-  <script src="src/js/app.js"></script>
-  <script src="src/js/directives/directives.js"></script>
-  <script src="src/js/filters/filters.js"></script>
-  <script src="src/js/providers/config.js"></script>
-  <script src="src/js/entities/chmod.js"></script>
-  <script src="src/js/entities/item.js"></script>
-  <script src="src/js/services/filenavigator.js"></script>
-  <script src="src/js/services/fileuploader.js"></script>
-  <script src="src/js/providers/translations.js"></script>
-  <script src="src/js/controllers/main.js"></script>
-  <script src="src/js/controllers/selector-controller.js"></script>
-  <link href="src/css/angular-filemanager.css" rel="stylesheet">
+<!--<script src="src/js/app.js"></script>
+<script src="src/js/directives/directives.js"></script>
+<script src="src/js/filters/filters.js"></script>
+<script src="src/js/providers/config.js"></script>
+<script src="src/js/entities/chmod.js"></script>
+<script src="src/js/entities/acl.js"></script>
+<script src="src/js/entities/item.js"></script>
+<script src="src/js/entities/fileitem.js"></script>
+<script src="src/js/services/filenavigator.js"></script>
+<script src="src/js/services/fileuploader.js"></script>
+<script src="src/js/providers/translations.js"></script>
+<script src="src/js/controllers/main.js"></script>
+<script src="src/js/controllers/selector-controller.js"></script>
+<link href="src/css/angular-filemanager.css" rel="stylesheet">
 -->
 
 <!-- Comment if you need to use raw source code -->
@@ -92,7 +78,7 @@ A very smart filemanager to manage your files in the browser developed in Angula
   angular.module('FileManagerApp').config(['fileManagerConfigProvider', function (config) {
     var defaults = config.$get();
     config.set({
-      appName: 'github.com/joni2back/angular-filemanager',
+      appName: 'github.com/agaveplatform/angular-filemanager',
       allowedActions: angular.extend(defaults.allowedActions, {
         remove: true
       })
@@ -102,6 +88,36 @@ A very smart filemanager to manage your files in the browser developed in Angula
 ```
 
 ---------
+
+### Development
+
+Clone and build the project from GitHub
+
+```shell
+git clone https://github.com/agaveplatform/agave-angular-filemanager
+cd agave-angular-filemanager
+npm install
+```
+
+To start the demo application locally, run the following 
+```shell
+gulp localhost
+```
+
+The a web server will startup and be available at [http://localhost:9000](). A watch is automatically placed on all 
+source files and will hot reload the page when any files are changed. 
+
+By default, the demo points at Agave's public tenant. If you would like to authenticate to another tenant, edit the 
+following variables in the `index.html` file.
+
+| Variable name    | Default                      | Description                                                               |
+|------------------|------------------------------|---------------------------------------------------------------------------|
+| AGAVE_TENANT_ID  | agave.prod                   | ID of the tenant you would like to use.                                   |
+| AGAVE_BASE_URL   | https://public.agaveapi.co   | Base URL of the tenant to which you would like to connect.                |
+| AGAVE_CLIENT_KEY | xOWNUeaInV_vSauTmYf44wFf6ZEa | Valid client key to use to authenticate using an implicit oauth flow.     |
+| AGAVE_AUTH_TOKEN |                              | Valid OAuth access token to use if you would like to skip authentication. |
+| AGAVE_SYSTEM_ID  | data.agaveapi.co             | System to which you would like to connect                                 |  
+ 
 
 ### Contribute
 To contribute to the project you can simply fork this repo. To build a minified version, you can simply run the Gulp 
